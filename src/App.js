@@ -1,17 +1,17 @@
 import './App.css'
 import Header from './components/Header'
 
-import response from './character-response.json'
 import CharacterGallery from './components/CharacterGallery'
 import { useEffect, useState } from 'react'
 import { fetchAllCharacters } from './services/fetchAllCharacters'
+import Search from './components/Search'
 
 function App() {
   const heading = 'Character Gallery'
-  // const characters = response.results
 
   const [characters, setCharacters] = useState([])
   const [search, setSearch] = useState('')
+  const [checkAlive, setCheckAlive] = useState(false)
 
   useEffect(() => {
     fetchAllCharacters()
@@ -19,26 +19,34 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  const loadCards = () => {
-    setCharacters(response.results)
-  }
-  const deleteCards = () => {
-    setCharacters([])
-  }
-  const filteredCharacters = characters.filter(character =>
+  const filteredCharactersByName = characters.filter(character =>
     character.name.toLowerCase().includes(search.toLowerCase())
   )
+  const filteredCharactersAlive = filteredCharactersByName.filter(
+    character => !checkAlive || (checkAlive && character.status === 'Alive')
+  )
+
   const handleSearch = event => {
     setSearch(event.target.value)
+  }
+  const handleIsAlive = () => {
+    setCheckAlive(!checkAlive)
   }
 
   return (
     <div>
       <Header title={heading} />
-      <button onClick={loadCards}>load</button>
-      <button onClick={deleteCards}>delete</button>
-      <input onChange={handleSearch} type="text" value={search} />
-      <CharacterGallery charcters={filteredCharacters} />
+      <Search
+        count={filteredCharactersAlive.length}
+        search={search}
+        handleSearch={handleSearch}
+        checkedAlive={checkAlive}
+        handleIsAlive={handleIsAlive}
+      />
+      {filteredCharactersAlive.length === 0 && <p>no characters found 🙆‍♀️</p>}
+      {filteredCharactersAlive.length > 0 && (
+        <CharacterGallery charcters={filteredCharactersAlive} />
+      )}
     </div>
   )
 }
