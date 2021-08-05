@@ -1,13 +1,13 @@
 .character-card {
-    width: 300px;
-    border: solid hotpink;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 1px 2px 8px hotpink;
-    margin: 5px;
-    font-family: sans-serif;
+  width: 300px;
+  border: solid hotpink;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 1px 2px 8px hotpink;
+  margin: 5px;
+  font-family: sans-serif;
 }
 .character-card__image {
-    width: 100%;
+  width: 100%;
 }

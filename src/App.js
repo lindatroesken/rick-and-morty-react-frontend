@@ -1,19 +1,19 @@
-import "./App.css";
-import Header from "./components/Header";
+import './App.css'
+import Header from './components/Header'
 
-import response from "./character-response.json";
-import CharacterGallery from "./components/CharacterGallery";
-import { useState } from "react";
+import response from './character-response.json'
+import CharacterGallery from './components/CharacterGallery'
+import { useState } from 'react'
 
 function App() {
-  const heading = "Character Gallery";
+  const heading = 'Character Gallery'
   // const characters = response.results
 
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState([])
 
   const loadCards = () => {
-    setCharacters(response.results);
-  };
+    setCharacters(response.results)
+  }
 
   return (
     <div>
@@ -21,7 +21,7 @@ function App() {
       <button onClick={loadCards}>load</button>
       <CharacterGallery charcters={characters} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
