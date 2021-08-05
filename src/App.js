@@ -14,11 +14,15 @@ function App() {
   const loadCards = () => {
     setCharacters(response.results)
   }
+  const deleteCards = () => {
+    setCharacters([])
+  }
 
   return (
     <div>
       <Header title={heading} />
       <button onClick={loadCards}>load</button>
+      <button onClick={deleteCards}>delete</button>
       <CharacterGallery charcters={characters} />
     </div>
   )
