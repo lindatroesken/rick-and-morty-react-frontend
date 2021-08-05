@@ -2,11 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
   background-color: hotpink;
+  position: sticky;
 }
 
 .header__image {
   height: 48px;
   width: 48px;
+}
+
+.header .header__image + .header__title{
+  margin-left: 15px;
 }
